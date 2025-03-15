@@ -1,0 +1,31 @@
+<div id="grandparent">
+  <div id="parent">
+    <button id="child">Click Me</button>
+  </div>
+</div>
+<!-- EVENT BUBBLING : this is the example of event bubling like how we click on the target element and it propagates through the event and goes till the grandparent element -->
+<script>
+  document.getElementById("grandparent").addEventListener("click", (event) => {
+    console.log("Grandparent clicked");
+  });
+
+  document.getElementById("parent").addEventListener("click", () => {
+    console.log("Parent clicked");
+  });
+
+  document.getElementById("child").addEventListener("click", () => {
+    console.log("Child clicked");
+  });
+</script>
+
+<!-- EVENT CAPTURING : in this the click event goes from the root to the child -->
+
+<!-- we just need to add a true which enables event capturing (Trickling) -->
+<!-- grandparent → parent → child. -->
+
+<!-- Stopping Event Propagation -->
+<!-- so we use stop propagation to stop the event to propagate further to root -->
+<!-- document.getElementById("child").addEventListener("click", (event) => {
+  console.log("Child clicked");
+  event.stopPropagation();
+}); -->
