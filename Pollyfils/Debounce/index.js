@@ -1,23 +1,29 @@
-// Debouncing is a technique to limit the rate at which a function executes, typically used in scenarios like search bars, button clicks, and window resizing.
-
-const debounceSearch = (func, delay) => {
+// Debounce function
+function debounce(func, delay) {
   let timer;
   return function (...args) {
-    clearTimeout(timer);
+    clearTimeout(timer); // Clear previous timer
     timer = setTimeout(() => {
-      console.log("Search triggered", ...args);
-    }, 500); // delay of 500 milliseconds
+      console.log("hello", args);
+      func(...args);
+    }, delay);
   };
-};
-const fetchFunction = (query) => {
-  // Simulate API call
-  document.getElementById("fetch").innerText = query;
-  // Perform API call here...
-  //...
-};
-const searchBar = document.getElementById("search");
-const debounce = debounceSearch(fetchFunction, 5000);
+}
 
-searchBar.addEventListener("input", (event) => {
-  debounce(event.target.value);
+// Simulated API call function
+function fetchData(query) {
+  console.log("Fetching results for:", query);
+  document.getElementById("fetch").innerText = `Searching for: ${query}`;
+}
+
+// Get input element
+const searchInput = document.getElementById("search");
+
+// Apply debounce (delays function execution by 500ms)
+const debouncedSearch = debounce(fetchData, 2000);
+
+// Attach event listener
+searchInput.addEventListener("input", (event) => {
+  console.log("helllo", event.target.value);
+  debouncedSearch(event.target.value);
 });
