@@ -46,3 +46,4 @@ console.log(rest); // { age: 25, city: "New York" }
  *    - Spread (`...`): Expands elements
  *    - Rest (`...`): Collects elements
  */
+  
