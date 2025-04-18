@@ -1,4 +1,3 @@
-// Garbage Collection in JavaScript - Explained in Layman Terms 🧹
 
 // JavaScript automatically manages memory using Garbage Collection.
 
