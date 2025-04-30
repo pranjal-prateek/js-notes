@@ -1,0 +1,11 @@
+.stars {
+  font-size: 2rem;
+  color: gray;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.star.hover,
+.star.selected {
+  color: gold;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>Notification</title>
+</head>
+<body>
+  <div class="notification">
+    <div class="notification__bell" id="bell">
+      🔔
+      <span class="notification__badge" id="badge">
+        3
+      </span>
+    </div>
+    <div class="notification__dropdown notification__dropdown--hidden" id="dropdown">
+        <ul class="notification__list" id="notificationList">
+          <li class="notification__item">New message from Alice</li>
+          <li class="notification__item">New message from Pranjal</li>
+          <li class="notification__item">New message from Prateek</li>
+        </ul>
+    </div>
+  </div>
+  <script type='module' src="./index.js"></script>
+</body>
+</html>

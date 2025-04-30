@@ -1,0 +1,8 @@
+.suggestion.highlighted {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.highlight {
+  background-color: #d3d3d3;
+}
