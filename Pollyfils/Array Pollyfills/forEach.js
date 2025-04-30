@@ -1,19 +1,22 @@
-const arr = [1, 2, 3, 4, 5];
+const arr= [1,2,3,4,5,6];
 
-arr.forEach((curr, index, arr) => {
-  arr[index] = curr * 2;
-});
+
+arr.forEach((val,i)=>{
+  arr[i] = val*2;
+})
 console.log(arr);
 
-const polyArr = [1, 3, 5, 7, 9];
 
-Array.prototype.myForEach = function (cb) {
-  for (let i = 0; i < this.length; i++) {
-    cb(this[i], i, this);
-  }
-};
+//Pollyfillsss
 
-polyArr.myForEach((curr, index, arr) => {
-  polyArr[index] = curr * 2;
-});
-console.log("Polyfilled array", polyArr);
+Array.prototype.myForEach = function(callback){
+   for(let i=0;i<this.length;i++){
+    callback(this[i],i,this);
+   }
+}
+
+arr.myForEach((val,i)=>{
+  arr[i] = val*2;
+})
+console.log(arr);
+

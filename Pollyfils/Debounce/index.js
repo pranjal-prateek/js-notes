@@ -1,29 +1,41 @@
-// Debounce function
-function debounce(func, delay) {
+const searchInput =document.getElementById('search');
+const fruits =['apple','appricot','banana','grapes'];
+const showResults =document.getElementById('fetch')
+
+
+function debounce(func,delay){
   let timer;
-  return function (...args) {
-    clearTimeout(timer); // Clear previous timer
-    timer = setTimeout(() => {
-      console.log("hello", args);
-      func(...args);
-    }, delay);
-  };
+
+  return function(...args){
+    clearTimeout(timer);
+    timer = setTimeout(()=>{
+      func(...args)
+    },delay)
+  }
 }
 
-// Simulated API call function
-function fetchData(query) {
-  console.log("Fetching results for:", query);
-  document.getElementById("fetch").innerText = `Searching for: ${query}`;
+function filterFunction(input){
+  const filterValues = fruits.filter((fruit)=>{
+    return fruit.toLowerCase().includes(input.toLowerCase())
+  })
+
+  showResults.innerHTML='';
+  const ul =document.createElement('ul');
+  showResults.appendChild(ul);
+
+  filterValues.forEach((fruit)=>{
+    const li = document.createElement('li');
+    li.textContent =fruit;
+    ul.appendChild(li)
+  })
 }
 
-// Get input element
-const searchInput = document.getElementById("search");
+const debounceFunction =debounce(filterFunction,2000);
 
-// Apply debounce (delays function execution by 500ms)
-const debouncedSearch = debounce(fetchData, 2000);
 
-// Attach event listener
-searchInput.addEventListener("input", (event) => {
-  console.log("helllo", event.target.value);
-  debouncedSearch(event.target.value);
-});
+function handleChange(e){
+  const inputValue = e.target.value;
+  debounceFunction(inputValue)
+}
+
+searchInput.addEventListener('input',(e)=>handleChange(e))
