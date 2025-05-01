@@ -8,17 +8,21 @@ const sum = arr.reduce((accumulator, currentValue, index, arr) => {
 
 console.log(sum);
 
-//pollyfill for the reduce function
-Array.prototype.myReduce = function (cb, initialvalue) {
-  let accumulator = initialvalue === undefined ? this[0] : initialvalue;
 
-  for (let i = 0; i < this.length; i++) {
-    accumulator = cb(accumulator, this[i], i, this);
+//Pollyfilles
+
+Array.prototype.myReduce =function (callback,initialVal){
+let accumulator= initialVal==='undefined'?this[0]:initialVal;
+  for(let i=0;i<this.length;i++){
+    accumulator=callback(accumulator,this[i],i,this);
   }
   return accumulator;
-};
+
+}
+
 const prototypeValue = arr.myReduce((accumulator, currentValue, index, arr) => {
   return accumulator + currentValue;
 }, 0);
 
 console.log("PrototypeValue", prototypeValue);
+

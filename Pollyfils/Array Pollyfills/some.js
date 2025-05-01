@@ -7,15 +7,17 @@ const testResult = arr1.some((curr, index, arr1) => {
 });
 console.log(testResult);
 
-Array.prototype.mySome = function (cb) {
-  for (let i = 0; i < this.length; i++) {
-    if (cb(this[i], i, this)) {
+//Pollyfills
+
+Array.prototype.MySome = function(callback){
+  for(let i=0;i<this.length;i++){
+    if(callback(this[i],i,this)){
       return true;
     }
   }
-  return false;
-};
-const testResultPollyfill = arr1.mySome((curr, index, arr1) => {
-  return curr % 2 === 0;
+  return false
+}
+const testResult2 = arr1.some((curr, index, arr1) => {
+  return curr %2 === 0;
 });
-console.log("testResultPollyfill", testResultPollyfill);
+console.log(testResult2);

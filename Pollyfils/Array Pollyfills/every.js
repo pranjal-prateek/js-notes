@@ -6,18 +6,21 @@ const booly = arr.every((curr, index, arr) => {
 
 console.log(booly);
 
-// Polyfill
+// Polyfillss
 
-Array.prototype.myEvery = function (cb) {
-  for (let i = 0; i < this.length; i++) {
-    if (!cb(this[i], i, this)) {
+Array.prototype.myEvery = function(callback){
+  for(let i=0;i<this.length;i++){
+    if(!callback(this[i],i,this)){
       return false;
     }
   }
   return true;
-};
+}
 
-const boolyPolyfill = arr.myEvery((curr, index, arr) => {
+const myBooly = arr.myEvery((curr, index, arr) => {
   return curr % 2 != 0;
 });
-console.log("Polyfilled booly", boolyPolyfill);
+
+console.log(myBooly);
+
+

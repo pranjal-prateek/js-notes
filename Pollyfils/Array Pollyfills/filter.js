@@ -14,19 +14,20 @@ console.log(newArr);
 
 //pollyfill for the filter function
 
-Array.prototype.myFilter = function (cb) {
-  let result = [];
-  for (let i = 0; i < this.length; i++) {
-    if (cb(this[i], i, this)) {
-      result.push(this[i]);
+Array.prototype.myFilter =function(callback){
+  const result= [];
+  for(let i=0;i<this.length;i++){
+    if(callback(this[i],i,this)){
+      result.push(callback(this[i],i,this))
     }
   }
   return result;
-};
+}
 
-const newArr2 = arr.myFilter((curr, index, arr) => {
+const myNewArr = arr.myFilter((curr, index, arr) => {
   if (curr % 2 === 0) {
     return curr;
   }
 });
-console.log("pollyfill arr", newArr2);
+
+console.log(myNewArr);
