@@ -1,23 +1,21 @@
 function catchMemo() {
-  const cacheVar = {};
+  const catchObj = {};
 
-  return function memoizedFetch(url, fetchFunction) {
-    // Check if the data is already in cache
-    if (cacheVar[url]) {
+  return function(url, fetchFunction) {
+    if (catchObj[url]) {
       console.log("Returning cached data for:", url);
-      return Promise.resolve(cacheVar[url]); // Return cached data
+      return Promise.resolve(catchObj[url]);
     }
 
     console.log("Fetching data from API for:", url);
     return fetchFunction().then((data) => {
-      cacheVar[url] = data; // Store in cache
+      catchObj[url] = data;
       return data;
     });
   };
 }
 
-// Example Usage
-const memoizedFetch = catchMemo();
+const memoFetch = catchMemo();
 
 function fetchData(url) {
   return fetch(url).then((response) => response.json());
@@ -25,12 +23,15 @@ function fetchData(url) {
 
 const url = "https://jsonplaceholder.typicode.com/todos/1";
 
-// First call - API fetch
-memoizedFetch(url, () => fetchData(url)).then((data) =>
+// First call - fetches from API
+memoFetch(url, () => fetchData(url)).then((data) =>
   console.log("Data:", data)
 );
 
-// Second call - Returns cached data
-memoizedFetch(url, () => fetchData(url)).then((data) =>
+// Second call - returns cached
+setTimeout(()=>{
+  memoFetch(url, () => fetchData(url)).then((data) =>
   console.log("Data:", data)
 );
+},1000)
+

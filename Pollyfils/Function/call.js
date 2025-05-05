@@ -1,28 +1,29 @@
-// so it binds the fucntion with the this object and call the fuction with parameter in string form
-class Person {
-  constructor(name) {
-    this.name = name;
+// so call is a way to attach a function to a object and call it there
+//syntax call(obj,..args in string )
+class Obj{
+  constructor(name){
+    this.name=name;
   }
 }
 
-function sayHello(baby) {
-  console.log(`Hello, my name is ${this.name} ${baby}`);
+
+const person =new Obj("Pranjal")
+// lets say we have a function
+
+function sayHello(...args){
+  console.log(this.name)
 }
 
-const person = new Person("Monkey");
-sayHello.call(person);
+// sayHello.call(person)
 
-// call pollyfill
 
-// call(obj,object in string form multiple can be there depending on the parameter of the fucntion)
-
-Function.prototype.myCall = function (context = {}, ...args) {
-  if (typeof this != "function") {
-    throw new Error("First argument must be a function");
+Function.prototype.myCall =function(context={},...args){
+  if(typeof this !='function'){
+    throw new Error('nikal yaha se')
   }
-
+  console.log(this);
   context.fn = this;
-  context.fn(...args);
-};
-
-sayHello.myCall(person, "heyy");
+  console.log(context);
+  context.fn(...args)
+}
+sayHello.myCall(person)
